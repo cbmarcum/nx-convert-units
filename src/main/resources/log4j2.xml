@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns="https://logging.apache.org/xml/ns"
+               xsi:schemaLocation="
+                       https://logging.apache.org/xml/ns
+                       https://logging.apache.org/xml/ns/log4j-config-2.xsd">
+
+    <Appenders>
+        <Console name="CONSOLE">
+            <!-- <JsonTemplateLayout/> -->
+            <PatternLayout pattern="%d [%t] %5p %c{1.} - %m%n"/>
+        </Console>
+        <RollingFile name="FILE"
+                     fileName="logs/app.log"
+                     filePattern="logs/app.log.%i.gz"> <!--1-->
+            <!-- <JsonTemplateLayout/> -->
+            <PatternLayout pattern="%d [%t] %5p %c{1.} - %m%n"/>
+            <DefaultRolloverStrategy max="5"/> <!--2-->
+            <Policies>
+                <CronTriggeringPolicy schedule="0 0 0 * * ?"/> <!--3-->
+                <SizeBasedTriggeringPolicy size="100k"/> <!--4-->
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.copeland" level="INFO"/>
+        <Root level="INFO">
+            <AppenderRef ref="FILE"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

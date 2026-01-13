@@ -1,10 +1,6 @@
 package com.copeland.nx.convertunits
 
-import java.io.File
-import java.io.IOException
-import java.io.PrintWriter
-import java.util.HashMap
-import java.util.Map
+import groovy.transform.CompileStatic
 
 import org.apache.commons.exec.DefaultExecutor
 import org.apache.commons.exec.Executor
@@ -14,22 +10,12 @@ import org.apache.commons.exec.ExecuteWatchdog
 import org.apache.commons.exec.ExecuteException
 import org.apache.commons.exec.PumpStreamHandler
 
-
-import java.io.FileNotFoundException
-import java.io.UnsupportedEncodingException
-import java.util.ArrayList
-import java.util.Arrays
-// import java.util.logging.Level
-// import java.util.logging.Logger
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 import org.apache.commons.io.output.ByteArrayOutputStream
 
 import org.apache.logging.log4j.Logger
 import org.apache.logging.log4j.LogManager
 
-import java.util.concurrent.TimeUnit
-
+@CompileStatic
 class ConvertUnitsService {
 
     private static final Logger logger = LogManager.getLogger(ConvertUnitsService.class) // associated with this class by default
@@ -261,10 +247,9 @@ class ConvertUnitsService {
         logger.info(s)
         model.setStatus(s);
         try {
-            // TimeUnit.MILLISECONDS.sleep(500);
             sleep(500)
         } catch (InterruptedException ex) {
-            Logger.getLogger(ConvertUnitsService.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex)
         }
     }
 

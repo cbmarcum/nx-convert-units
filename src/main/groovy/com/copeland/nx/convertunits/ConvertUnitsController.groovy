@@ -1,9 +1,12 @@
 package com.copeland.nx.convertunits
 
+import groovy.transform.CompileStatic
+import javafx.beans.value.ChangeListener
 import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.control.RadioButton
 import javafx.scene.control.TextField
+import javafx.scene.control.Toggle
 import javafx.scene.control.ToggleGroup
 import javafx.stage.DirectoryChooser
 import javafx.stage.FileChooser
@@ -20,7 +23,7 @@ import org.apache.logging.log4j.Logger
 import org.apache.logging.log4j.LogManager
 
 
-
+@CompileStatic
 class ConvertUnitsController {
 
     private static final Logger logger = LogManager.getLogger()
@@ -88,22 +91,24 @@ class ConvertUnitsController {
         // --- Bidirectional synchronization logic ---
 
         // 1. Update model when ToggleGroup selection changes
-        inputToggleGroup.selectedToggleProperty().addListener { observable, oldValue, newValue ->
+        inputToggleGroup.selectedToggleProperty().addListener({ observable, oldValue, newValue ->
             if (newValue) {
                 // Get the Boolean value from the selected toggle's UserData
-                Boolean value = newValue.userData as Boolean
+                Toggle toggle = newValue as Toggle
+                Boolean value = toggle.getUserData() as Boolean
                 model.setInputIsDir(value)
             }
-        }
+        } as ChangeListener)
 
         // 2. Update ToggleGroup selection when model property changes
-        model.inputIsDirProperty().addListener { observable, oldValue, newValue ->
+        model.inputIsDirProperty().addListener({ observable, oldValue, newValue ->
             // Find the corresponding toggle button and select it
-            def targetToggle = inputToggleGroup.toggles.find { it.userData == newValue }
+            Boolean boolValue = newValue as Boolean
+            def targetToggle = inputToggleGroup.toggles.find { Toggle toggle -> toggle.getUserData() == boolValue }
             if (targetToggle) {
                 inputToggleGroup.selectToggle(targetToggle)
             }
-        }
+        } as ChangeListener)
 
         // --- Initial synchronization ---
         // Set initial state from the model
@@ -127,22 +132,24 @@ class ConvertUnitsController {
 
         // --- Bidirectional synchronization logic ---
         // 1. Update model when ToggleGroup selection changes
-        unitsToggleGroup.selectedToggleProperty().addListener { observable, oldValue, newValue ->
+        unitsToggleGroup.selectedToggleProperty().addListener({ observable, oldValue, newValue ->
             if (newValue) {
                 // Get the Boolean value from the selected toggle's UserData
-                Boolean value = newValue.userData as Boolean
+                Toggle toggle = newValue as Toggle
+                Boolean value = toggle.getUserData() as Boolean
                 model.setMmUnits(value)
             }
-        }
+        } as ChangeListener)
 
         // 2. Update ToggleGroup selection when model property changes
-        model.mmUnitsProperty().addListener { observable, oldValue, newValue ->
+        model.mmUnitsProperty().addListener({ observable, oldValue, newValue ->
             // Find the corresponding toggle button and select it
-            def targetToggle = unitsToggleGroup.toggles.find { it.userData == newValue }
+            Boolean boolValue = newValue as Boolean
+            def targetToggle = unitsToggleGroup.toggles.find { Toggle toggle -> toggle.getUserData() == boolValue }
             if (targetToggle) {
                 unitsToggleGroup.selectToggle(targetToggle)
             }
-        }
+        } as ChangeListener)
 
         // --- Initial synchronization ---
         // Set initial state from the model

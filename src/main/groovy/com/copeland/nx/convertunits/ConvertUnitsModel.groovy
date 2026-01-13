@@ -1,10 +1,12 @@
 package com.copeland.nx.convertunits
 
+import groovy.transform.CompileStatic
 import javafx.beans.property.StringProperty
 import javafx.beans.property.SimpleStringProperty
 import javafx.beans.property.BooleanProperty
 import javafx.beans.property.SimpleBooleanProperty
 
+@CompileStatic
 class ConvertUnitsModel {
 
     // Define variables to store the properties

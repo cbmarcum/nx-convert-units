@@ -52,7 +52,7 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-api:${log4j-api.version}'
 
     // The logging implementation (i.e., Log4j Core)
-    runtimeOnly 'org.apache.logging.log4j:log4j-core'
+    implementation 'org.apache.logging.log4j:log4j-core' // TEST was runtimeOnly
 
     // Log4j JSON-encoding support
     runtimeOnly 'org.apache.logging.log4j:log4j-layout-template-json' // needed ??

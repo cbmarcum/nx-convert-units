@@ -62,14 +62,14 @@ class ConvertUnitsController {
 
     ConvertUnitsService service
 
-    ResourceBundle bundle
+    @FXML
+    private ResourceBundle resources
 
 
     void initialize() {
         // Initialize the model
         logger.info("Initializing the controller...")
-        // bundle = resources
-        model = new ConvertUnitsModel("", "", false, "Select a file or directory to convert...")
+        model = new ConvertUnitsModel(resources)
         service = new ConvertUnitsService()
 
 
@@ -193,11 +193,11 @@ class ConvertUnitsController {
             File selectedDirectory = directoryChooser.showDialog(owner)
             if (selectedDirectory) {
                 model.setInputFile(selectedDirectory.getAbsolutePath())
-                model.setStatus(bundle.getString('output.prompt'))
+                model.setStatus(resources.getString('output.prompt'))
             } else {
                 model.setStatus("No directory selected!")
                 sleep(2000)
-                model.setStatus(bundle.getString('ugconvert.prompt'))
+                model.setStatus(resources.getString('ugconvert.prompt'))
             }
 
 
@@ -282,9 +282,9 @@ class ConvertUnitsController {
 
                 // TEST FOR DIALOG
                 Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle('default.title')
-                alert.setHeaderText('dialog.exception.header')
-                alert.setContentText('dialog.exception.content')
+                alert.setTitle(resources.getString('default.title'))
+                alert.setHeaderText(resources.getString('dialog.exception.header'))
+                alert.setContentText(resources.getString('dialog.exception.content'))
 
                 // Exception ex = new FileNotFoundException("Could not find file blabla.txt");
 
@@ -320,9 +320,9 @@ class ConvertUnitsController {
 
             // SOME SUCCESS
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle('default.title')
-            alert.setHeaderText('dialog.info.header')
-            alert.setContentText('dialog.info.content')
+            alert.setTitle(resources.getString('default.title'))
+            alert.setHeaderText(resources.getString('dialog.info.header'))
+            alert.setContentText(resources.getString('dialog.info.content'))
 
             // Create expandable Exception.
             StringWriter sw = new StringWriter()
@@ -331,7 +331,7 @@ class ConvertUnitsController {
             // String exceptionText = model.masterList.toString()
             String exceptionText = model.masterList.join(System.getProperty("line.separator"))
 
-            Label label = new Label('dialog.info.label')
+            Label label = new Label(resources.getString('dialog.info.label'))
 
             TextArea textArea = new TextArea(exceptionText)
             textArea.setEditable(false)
@@ -354,7 +354,7 @@ class ConvertUnitsController {
             System.exit(0)
 
         } else {
-            setStatus(bundle.getString('default.file.dir.missing'))
+            setStatus(resources.getString('default.file.dir.missing'))
         }
 
     }
@@ -363,9 +363,9 @@ class ConvertUnitsController {
     void helpBtnAction() {
 
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle('default.title')
-        alert.setHeaderText('dialog.help.header')
-        alert.setContentText('help.label')
+        alert.setTitle(resources.getString('default.title'))
+        alert.setHeaderText(resources.getString('dialog.help.header'))
+        alert.setContentText(resources.getString('help.label'))
 
         alert.showAndWait()
 
@@ -378,10 +378,8 @@ class ConvertUnitsController {
         logger.info(s)
         model.setStatus(s);
         try {
-            // TimeUnit.MILLISECONDS.sleep(500);
             sleep(500)
         } catch (InterruptedException ex) {
-            // Logger.getLogger(ConvertUnitsController.class.getName()).log(Level.SEVERE, null, ex);
             logger.error(ex)
         }
     }

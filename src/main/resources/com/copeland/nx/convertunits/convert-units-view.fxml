@@ -9,7 +9,7 @@
    <children>
       <HBox prefHeight="40.0" prefWidth="600.0">
          <children>
-            <Label text="NX Convert Units">
+            <Label text="%default.title">
                <font>
                   <Font size="36.0" />
                </font>
@@ -30,12 +30,12 @@
             <Insets left="10.0" right="10.0" top="10.0" />
          </padding>
          <children>
-            <Label text="File or Directory to Convert">
+            <Label text="%convert.label">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <RadioButton fx:id="fileRadioButton" mnemonicParsing="false" text="Select a File">
+            <RadioButton fx:id="fileRadioButton" mnemonicParsing="false" text="%input.choice.file">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -43,7 +43,7 @@
                   <ToggleGroup fx:id="inputToggleGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="dirRadioButton" mnemonicParsing="false" text="Select a Directory" toggleGroup="$inputToggleGroup">
+            <RadioButton fx:id="dirRadioButton" mnemonicParsing="false" text="%input.choice.directory" toggleGroup="$inputToggleGroup">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -57,7 +57,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="inputBtn" alignment="CENTER" mnemonicParsing="false" onAction="#inputBtnAction" prefHeight="26.0" prefWidth="80.0" text="Browse" textAlignment="RIGHT">
+            <Button fx:id="inputBtn" alignment="CENTER" mnemonicParsing="false" onAction="#inputBtnAction" prefHeight="26.0" prefWidth="80.0" text="%default.browse" textAlignment="RIGHT">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -75,7 +75,7 @@
             <Insets left="10.0" right="10.0" top="10.0" />
          </padding>
          <children>
-            <Label text="Directory for  converted files">
+            <Label text="%output.label">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -89,7 +89,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="outputBtn" alignment="CENTER" mnemonicParsing="false" onAction="#outputBtnAction" prefHeight="26.0" prefWidth="80.0" text="Browse" textAlignment="RIGHT">
+            <Button fx:id="outputBtn" alignment="CENTER" mnemonicParsing="false" onAction="#outputBtnAction" prefHeight="26.0" prefWidth="80.0" text="%default.browse" textAlignment="RIGHT">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -104,7 +104,7 @@
       </HBox>
       <HBox>
          <children>
-            <RadioButton fx:id="mmRadioButton" mnemonicParsing="false" text="Millimeters">
+            <RadioButton fx:id="mmRadioButton" mnemonicParsing="false" text="%default.millimeters">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -115,7 +115,7 @@
                   <ToggleGroup fx:id="unitsToggleGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="inchRadioButton" mnemonicParsing="false" text="Inches" toggleGroup="$unitsToggleGroup">
+            <RadioButton fx:id="inchRadioButton" mnemonicParsing="false" text="%default.inches" toggleGroup="$unitsToggleGroup">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -127,17 +127,17 @@
       </HBox>
       <HBox alignment="TOP_RIGHT">
          <children>
-            <Button mnemonicParsing="false" prefWidth="80.0" text="Help">
+            <Button mnemonicParsing="false" onAction="#helpBtnAction" prefWidth="80.0" text="%default.help">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#okayBtnAction" prefWidth="80.0" text="Okay">
+            <Button mnemonicParsing="false" onAction="#okayBtnAction" prefWidth="80.0" text="%default.okay">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="80.0" text="Cancel">
+            <Button mnemonicParsing="false" prefWidth="80.0" text="%default.cancel">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -149,7 +149,7 @@
       </HBox>
       <HBox>
          <children>
-            <Label fx:id="statusLabel" text="Select file or directory to convert">
+            <Label fx:id="statusLabel" text="%ugconvert.prompt">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>

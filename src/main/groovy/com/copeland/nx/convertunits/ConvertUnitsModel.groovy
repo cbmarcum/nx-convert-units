@@ -20,20 +20,20 @@ class ConvertUnitsModel {
 
     ArrayList<String> masterList = new ArrayList() // for output stream
 
+    private final ResourceBundle resources
+
 
     // File inputFile
 
-    // Constructor (optional, for convenience)
-    ConvertUnitsModel(String inputFile, String outputDir, Boolean mmUnits, String status) {
-        this.inputFile.set(inputFile)
-        this.outputDir.set(outputDir)
-        this.mmUnits.set(mmUnits)
-        this.status.set(status)
-        this.inputIsDir.set(false) // default on construction
-    }
+    // Constructor
+    ConvertUnitsModel(ResourceBundle resources) {
+        this.resources = resources
+        this.inputFile.set("")
+        this.outputDir.set("")
+        this.mmUnits.set(false)
+        this.status.set(resources.getString('ugconvert.prompt'))
 
-    ConvertUnitsModel() {
-        this("", "", false, "Select a file or directory to convert...")
+        this.inputIsDir.set(false) // default on construction
     }
 
     // Define getters and setters for the values (standard JavaBeans pattern)

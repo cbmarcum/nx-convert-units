@@ -4,7 +4,8 @@ module com.copeland.nx.convertunits {
     requires org.apache.groovy;
 
     requires org.kordamp.ikonli.javafx;
-    requires org.apache.logging.log4j;
+    requires org.apache.logging.log4j;  // for the API
+    requires org.apache.logging.log4j.core; // for the implementation
     requires org.apache.commons.io;
     requires org.apache.commons.exec;
 

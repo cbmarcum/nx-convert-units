@@ -3,6 +3,7 @@ package com.copeland.nx.convertunits
 import groovy.transform.CompileStatic
 import javafx.beans.value.ChangeListener
 import javafx.fxml.FXML
+import javafx.fxml.Initializable
 import javafx.scene.control.Label
 import javafx.scene.control.RadioButton
 import javafx.scene.control.TextField
@@ -27,6 +28,8 @@ import org.apache.logging.log4j.LogManager
 class ConvertUnitsController {
 
     private static final Logger logger = LogManager.getLogger()
+
+
 
     @FXML
     private Label statusLabel
@@ -59,13 +62,16 @@ class ConvertUnitsController {
 
     ConvertUnitsService service
 
+    ResourceBundle bundle
 
 
     void initialize() {
         // Initialize the model
         logger.info("Initializing the controller...")
+        // bundle = resources
         model = new ConvertUnitsModel("", "", false, "Select a file or directory to convert...")
         service = new ConvertUnitsService()
+
 
         // Bind the UI controls to the model properties
 
@@ -187,11 +193,11 @@ class ConvertUnitsController {
             File selectedDirectory = directoryChooser.showDialog(owner)
             if (selectedDirectory) {
                 model.setInputFile(selectedDirectory.getAbsolutePath())
-                model.setStatus("Select an output directory...")
+                model.setStatus(bundle.getString('output.prompt'))
             } else {
                 model.setStatus("No directory selected!")
                 sleep(2000)
-                model.setStatus("Select a file or directory to convert...")
+                model.setStatus(bundle.getString('ugconvert.prompt'))
             }
 
 
@@ -348,7 +354,7 @@ class ConvertUnitsController {
             System.exit(0)
 
         } else {
-            setStatus(application.messageSource.getMessage('default.file.dir.missing'))
+            setStatus(bundle.getString('default.file.dir.missing'))
         }
 
     }

@@ -11,7 +11,16 @@ import javafx.stage.Stage
 class ConvertUnitsApplication extends Application {
     @Override
     void start(Stage stage) {
-        def fxmlLoader = new FXMLLoader(ConvertUnitsApplication.class.getResource("convert-units-view.fxml"))
+
+        Locale locale = Locale.ENGLISH  // ← or from config / system default
+
+        ResourceBundle bundle = ResourceBundle.getBundle(
+                "com.copeland.nx.convertunits.i18n.messages",
+                locale,
+                this.class.classLoader                  // ← crucial!
+        )
+
+        def fxmlLoader = new FXMLLoader(ConvertUnitsApplication.class.getResource("convert-units-view.fxml"), bundle)
         def scene = new Scene(fxmlLoader.load() as Parent, 640, 480)
         stage.setTitle("NX Convert Units")
         stage.setScene(scene)
